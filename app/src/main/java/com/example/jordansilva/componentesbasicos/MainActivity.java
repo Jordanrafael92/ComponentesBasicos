@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultado;
     private CheckBox checkBranco, checkVerde, checkVermelho ;
     List<String> check = new ArrayList<String>();
+    private RadioGroup rgEstoque;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         checkBranco = findViewById(R.id.checkBranco);
         checkVerde = findViewById(R.id.checkVerde);
         checkVermelho = findViewById(R.id.checkVermelho);
+        rgEstoque = findViewById(R.id.rgEstoque);
+
+        verificaRadioButton();
     }
 
     public void verificaCheck(){
@@ -48,10 +53,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void btEnviar (View view){
-        String nomeProduto = campoProduto.getText().toString();
-        resultado.setText(nomeProduto);
 
-        verificaCheck(); //chamando o método
+    public void verificaRadioButton(){
+        rgEstoque.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged( RadioGroup group, int checkedId ) {
+                if ( checkedId == R.id.radioSim ) {
+                    resultado.setText("SIM");
+
+                }else {
+                    resultado.setText("NÃO");
+                }
+            }
+        }
+        );
+    }
+
+    public void btEnviar (View view){
+       /* String nomeProduto = campoProduto.getText().toString();
+        resultado.setText(nomeProduto); */
+
+       // verificaCheck(); //chamando o método
+
+
     }
 }
